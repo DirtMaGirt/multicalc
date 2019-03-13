@@ -7,7 +7,12 @@
 // global array
 let numbers = [];
 const numberToAppend = [];
-const numberMemory = []
+const numberMemory = [];
+
+const convertedBank = [];
+
+
+
 
 // When the window loads, set up event listeners
 window.onload = init;
@@ -56,28 +61,18 @@ function appendToList(event) {
     event.preventDefault();
 
     // Get the value we're going to append from the input field.
-
-    // Get the value from the input field.
     const number = document.querySelector('#list-number').value;
-    numbers.push(number)
+    numbers.push(number);
     console.log(numbers);
-
-    // Set the input field back to blank.
-    resetInput();
-
-    // Add the item to the <ul>.
-    addToUL(number);
-
-    // Now comes your part: add the item to the list.
-
-    // Display it in next-item if it's the first item:
-    if (true) { // definitely change that condition!
-        document.querySelector('#list-number').innerText = number.value; // Replace that empty string with the actual item!
-    }
-
-    document.querySelector('#list-number').innerText = numbers[0] // Replace that empty string with the actual item!
-
+    updateUL();
     document.querySelector('#list-number').innerText = numbers.value; // Replace that with the number of items!
+
+    resetInput();
+    // Append the number to our array.
+    // Hint: here (and elsewhere), watch the TYPE of the value above.
+    // Research `typeof` operator if you're not sure.
+
+    // Update our html.
 
 
 }
@@ -85,45 +80,37 @@ function appendToList(event) {
 function removeFromList(event) {
     // Make sure page doesn't reload on button press.
     event.preventDefault();
+    let numberI = '';
 
-    // Get the index we'll remove from the input field.
-    removeLastFromPage();
-    // Your code to remove it from the array  goes here!
-    const numberBank = numbers.shift();
-    numberMemory.push(numberBank);
+    const number = document.querySelector('#list-number').value;
+    for (let i = 0; i < numbers.length; i++) {
+        const numberSearch = numbers[i];
+        if (numberI === numberSearch) {
 
-    console.log(numberMemory);
+        }
+    }
+
+
 
     console.log(numbers);
+    numbers.pop(numberI);
+    updateUL();
 
-    document.querySelector('#list-number').innerText = numbers[0] // Replace that empty string with the actual item!
 
-    document.querySelector('#list-number').innerText = numbers.value; // Replace that with the number of items!
-
-    // Remove the number at that index from the list.
-
-    /*
-        ### Hints:
-
-        * You can either loop through... or use array methods. Check out concat!
-
-        * Either way, though, we've declared out array using `let` this time,
-        and reassigning the array is probably the best approach with our current
-        tools.
-    */
-
-    // Update our html.
 
 
 }
 
 function clearList(event) {
     // Make sure page doesn't reload on button press.
+    const emptyBank = [];
     event.preventDefault();
-
+    numbers = emptyBank;
     // Clear the array of all values.
 
 
+    updateUL();
+    resetInput();
     // Update our html.
 
 }
@@ -138,27 +125,42 @@ function clearList(event) {
 function addToAll(event) {
     // Make sure page doesn't reload on button press.
     event.preventDefault();
+    const addBank = [];
 
     // Grab value to add.
-    const numbers2 = [numbers.map(myFunction)];
-
-    document.getElementById("number-for-math").innerHTML = numbers2;
-
-    function myFunction(value) {
-        return value * 2;
+    let numberToAdd = document.querySelector('#number-for-math').value;
+    for (let i = 0; i < numbers.length; i++) {
+        let newNumber = Number(numbers[i]) + Number(numberToAdd);
+        addBank.push(newNumber);
+        console.log(addBank);
 
     }
+    numbers = addBank;
+
+    updateUL();
+    resetInput();
+
+    // Update our html.
+
 }
-console.log(numbers2)
 
 function subtractFromAll(event) {
     // Make sure page doesn't reload on button press.
     event.preventDefault();
-
+    const subBank = [];
     // Grab value to subtract.
-    let numberToSubtract = document.querySelector('').value;
+    let numberToSubtract = document.querySelector('#number-for-math').value;
+    for (let i = 0; i < numbers.length; i++) {
+        let newNumber = Number(numbers[i]) - Number(numberToSubtract);
+        subBank.push(newNumber);
+        console.log(subBank);
 
-    // Subtract value from everything on the list.
+    }
+
+    numbers = subBank;
+
+    updateUL();
+    resetInput();
 
 
     // Update our html.
@@ -168,11 +170,20 @@ function subtractFromAll(event) {
 function multiplyByAll(event) {
     // Make sure page doesn't reload on button press.
     event.preventDefault();
-
+    const multiBank = [];
     // Grab value to multiply.
-    let numberToMultiply = document.querySelector('').value;
+    let numberToMultiply = document.querySelector('#number-for-math').value;
+    for (let i = 0; i < numbers.length; i++) {
+        let newNumber = Number(numbers[i]) * Number(numberToMultiply);
+        multiBank.push(newNumber);
+        console.log(multiBank);
 
+    }
+    numbers = multiBank;
     // Multiply value by everything on the list.
+    updateUL();
+    resetInput();
+
 
 
     // Update our html.
@@ -182,14 +193,19 @@ function multiplyByAll(event) {
 function divideFromAll(event) {
     // Make sure page doesn't reload on button press.
     event.preventDefault();
-
+    const divideBank = [];
     // Grab value to add.
-    let numberToDivide = document.querySelector('').value;
+    let numberToDivide = document.querySelector('#number-for-math').value;
+    for (let i = 0; i < numbers.length; i++) {
+        let newNumber = Number(numbers[i]) / Number(numberToDivide);
+        divideBank.push(newNumber);
+        console.log(divideBank);
 
-    // Divide value from everything on the list.
+    }
+    numbers = divideBank;
+    updateUL();
+    resetInput();
 
-
-    // // Update our html.plo
 
 }
 
@@ -208,7 +224,7 @@ function updateUL() {
 }
 
 function clearUL() {
-    const ul = document.querySelector('');
+    const ul = document.querySelector('#number-list');
     while (ul.hasChildNodes()) {
         ul.removeChild(ul.firstChild);
     }
@@ -225,10 +241,4 @@ function addToUL(numberToAppend) {
 function resetInput() {
     // Resets input field to blank. No need to add anything here!
     document.querySelector('#list-number').value = '';
-}
-
-function removeLastFromPage() {
-    const items = document.querySelectorAll('li');
-    const indexLocation = numbers[];
-    indexLocation.parentNode.removeChild(lastItem);
 }

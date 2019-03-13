@@ -25,4 +25,6 @@ Much of this is in the code comments, but:
 
 ### Stretch Goals
 * Add your own button! It should do something to every element in the array, but what that could be is totally up to you. For a bad example (because the idea should be your own!), you could have it subtract 3 from every element.
+* Add a button to remove a _value_ from the array instead of the index.
+* The function for the button above above most likely reuses some code from the removeFromList function. Change your code around so that the removal code only occurs once. You may have to make a new function for this!
 * You're looping through the array a number of times in this app. Is there a way to have only one loop in this entire codebase? Spoiler alert: there is! You'll have to make your own function into which you can pass the thing you  want to do to each item on the list. This is pretty advanced stuff for where we are now, so don't get discouraged if this seems very challenging. Feel free to do some heavy research on this one, but I would greatly prefer we avoid any use of the built-in array methods for doing this, like `.forEach` and `.map`.
