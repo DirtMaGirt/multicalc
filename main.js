@@ -80,20 +80,11 @@ function appendToList(event) {
 function removeFromList(event) {
     // Make sure page doesn't reload on button press.
     event.preventDefault();
-    let numberI = '';
-
-    const number = document.querySelector('#list-number').value;
-    for (let i = 0; i < numbers.length; i++) {
-        const numberSearch = numbers[i];
-        if (numberI === numberSearch) {
-
-        }
-    }
 
 
+    const index = document.querySelector('#list-number').value;
 
-    console.log(numbers);
-    numbers.pop(numberI);
+    numbers.splice(index, 1);
     updateUL();
 
 
